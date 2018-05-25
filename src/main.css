@@ -1,3 +1,7 @@
+body {
+    background-color: #f1f1f1;
+}
+
 #hue-logo {
     height: 50px;
     cursor: pointer;
@@ -63,6 +67,7 @@
 }
 
 .post {
+    background-color: #fff;
     border: 1px solid #D3D3D3;
     border-radius: 5px;
     margin-bottom: 10px;
