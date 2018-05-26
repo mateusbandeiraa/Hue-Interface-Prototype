@@ -36,6 +36,8 @@ body {
 }
 
 .btn-round {
+    min-width: 40px;
+    min-height: 40px;
     font-size: 1.2em;
     font-weight: 100;
     border-radius: 7px;
@@ -80,7 +82,14 @@ body {
     border-top: 1px solid #D3D3D3;
     display: flex;
     justify-content: space-between;
+    flex-wrap: nowrap;
+    align-items: center;
+    overflow: scroll;
     padding: 10px;
+}
+
+.post .post-actions .btn-round{
+    font-size: 1rem;
 }
 
 .post .post-content {
@@ -159,12 +168,17 @@ header {
 }
 
 header .btn-round {
-    height: 40px;
-    width: 40px;
-    font-size: 1rem;
     background-color: transparent;
     color: #FFF;
     border-color: #FFF;
+}
+
+/* Only affects header buttons */
+header>section> .btn-round {
+    font-size: 1rem;
+    height: 40px;
+    width: 40px;
+    padding: 0;
 }
 
 header .btn-round:hover {
@@ -188,7 +202,7 @@ header.active {
     height: 100vh;
 }
 
-li>.btn-round{
+li>.btn-round {
     width: 100%;
     display: flex;
     justify-content: center;
@@ -203,8 +217,8 @@ nav {
     height: 100%;
     width: 50%;
     max-width: 400px;
-    margin-top: 200px;
     /* Evita que o nav sobreponha o logo do header*/
+    margin-top: 200px;
     flex-direction: column;
     justify-content: center;
     transition: opacity .15s, margin .5s;
