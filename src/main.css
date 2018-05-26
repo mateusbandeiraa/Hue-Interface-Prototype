@@ -36,8 +36,8 @@ body {
 }
 
 .btn-round {
-    height: 40px;
-    width: 40px;
+    font-size: 1.2em;
+    font-weight: 100;
     border-radius: 7px;
     border: 1px solid grey;
     background-color: #F5F5F5;
@@ -70,6 +70,7 @@ body {
     background-color: #fff;
     border: 1px solid #D3D3D3;
     border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, .05);
     margin-bottom: 10px;
     width: 100%;
     max-width: 650px;
@@ -158,6 +159,9 @@ header {
 }
 
 header .btn-round {
+    height: 40px;
+    width: 40px;
+    font-size: 1rem;
     background-color: transparent;
     color: #FFF;
     border-color: #FFF;
@@ -184,23 +188,23 @@ header.active {
     height: 100vh;
 }
 
-li.btn-round {
-    width: auto;
-    height: 2em;
+li>.btn-round{
+    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
     margin-bottom: 10px;
-    font-size: 1.2em;
-    padding: 5px;
+    text-decoration: none;
+    box-sizing: border-box;
 }
 
 nav {
     display: flex;
     height: 100%;
     width: 50%;
-    max-width: 600px;
-    margin-top: 200px; /* Evita que o nav sobreponha o logo do header*/
+    max-width: 400px;
+    margin-top: 200px;
+    /* Evita que o nav sobreponha o logo do header*/
     flex-direction: column;
     justify-content: center;
     transition: opacity .15s, margin .5s;

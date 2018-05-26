@@ -1,6 +1,11 @@
 $(document).ready(function () {
     $("#hue-logo").click(function () {
-        scrollTop();
+        var header = $("header");
+        if (header.hasClass("active")) {
+            header.removeClass("active");
+        } else {
+            scrollTop();
+        }
     });
 
     $("#btn-search").click(function () {
@@ -11,7 +16,7 @@ $(document).ready(function () {
         }
     });
 
-    $("#nav-toggler").click(function(){
+    $("#nav-toggler").click(function () {
         toggleNav();
     });
 
@@ -22,16 +27,26 @@ $(document).ready(function () {
     });
 
     $(".upvote").click(function (e) {
-        $(e.currentTarget).addClass("active");
-        $(e.currentTarget).next().addClass("upvoted");
-        $(e.currentTarget).next().removeClass("downvoted");
-        $(e.currentTarget).next().next().removeClass("active");
+        if ($(e.currentTarget).hasClass("active")) {
+            $(e.currentTarget).removeClass("active");
+            $(e.currentTarget).next().removeClass("upvoted");
+        } else {
+            $(e.currentTarget).addClass("active");
+            $(e.currentTarget).next().addClass("upvoted");
+            $(e.currentTarget).next().removeClass("downvoted");
+            $(e.currentTarget).next().next().removeClass("active");
+        }
     });
     $(".downvote").click(function (e) {
-        $(e.currentTarget).addClass("active");
-        $(e.currentTarget).prev().addClass("downvoted");
-        $(e.currentTarget).prev().removeClass("upvoted");
-        $(e.currentTarget).prev().prev().removeClass("active");
+        if ($(e.currentTarget).hasClass("active")) {
+            $(e.currentTarget).removeClass("active");
+            $(e.currentTarget).prev().removeClass("downvoted");
+        } else {
+            $(e.currentTarget).addClass("active");
+            $(e.currentTarget).prev().addClass("downvoted");
+            $(e.currentTarget).prev().removeClass("upvoted");
+            $(e.currentTarget).prev().prev().removeClass("active");
+        }
     });
 });
 
@@ -49,14 +64,14 @@ function toggleSearch() {
     }
 }
 
-function toggleNav(){
+function toggleNav() {
     var header = $("header");
     var nav = $("nav");
     var navActive = header.hasClass("active");
 
-    if(navActive){
+    if (navActive) {
         header.removeClass("active");
-    } else{
+    } else {
         header.addClass("active")
     }
 }
