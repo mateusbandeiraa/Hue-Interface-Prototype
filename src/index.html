@@ -17,7 +17,7 @@
 <body>
     <header>
         <section>
-            <button class="btn-round" id="nav-toggler" type="button">
+            <button class="btn-round" id="nav-toggler" type="button" title="Abrir menu">
                 <i class="fas fa-lg fa-bars"></i>
             </button>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 416.28 304.91" class="visible" id="hue-logo">
@@ -25,12 +25,12 @@
                 />
             </svg>
             <input type="text" class="text-round invisible" id="search-field">
-            <button class="btn-round" id="btn-search" type="button">
+            <button class="btn-round" id="btn-search" type="button" title="Pesquisar">
                 <i class="fas fa-lg fa-search"></i>
             </button>
         </section>
         <nav>
-            <ul>
+            <ul class="simple">
                 <li>
                     <a class="btn-round" href="login.html">Login</a>
                 </li>
@@ -44,26 +44,34 @@
         <article class="post" id="post-101">
             <section class="post-info">
                 <h1>Magnificent, aren't they?</h1>
-                <i class="fas fa-user"></i>
-                <span class="small">Obi-Wan Quibebe</span>
+                <ul class="fa-ul">
+                    <li class="section-name">
+                        <span class="fa-li">
+                            <i class="fas fa-map-marker" title="Seção"></i>
+                        </span>Star Wars Prequels</li>
+                    <li class="author-name">
+                        <span class="fa-li">
+                            <i class="fas fa-user" title="Autor"></i>
+                        </span>Obi-Wan Quibebe</li>
+                </ul>
             </section>
             <section class="post-content">
                 <img class="img-card-bottom" src="../res/meme_1.jpg">
             </section>
             <section class="post-actions">
                 <section class="vote-section">
-                    <button class="btn-round upvote active" type="button">
+                    <button class="btn-round upvote active" type="button" title="Upvote">
                         <i class="fas fa-lg fa-angle-up"></i>
                     </button>
                     <span class="upvote-counter upvoted">15k</span>
-                    <button class="btn-round downvote" type="button">
+                    <button class="btn-round downvote" type="button" title="Downvote">
                         <i class="fas fa-lg fa-angle-down"></i>
                     </button>
                 </section>
-                <button type="button" class="btn-round">
+                <button type="button" class="btn-round" title="Comentários">
                     <i class="fas fa-lg fa-comment-alt"></i>
                 </button>
-                <button type="button" class="btn-round">
+                <button type="button" class="btn-round" title="Compartilhar">
                     <i class="fas fa-lg fa-share-square"></i>
                 </button>
             </section>
@@ -72,26 +80,38 @@
         <article class="post" id="post-102">
             <section class="post-info">
                 <h1>When your pizza slides off the plate and lands face-down on the floor</h1>
-                <i class="fas fa-user"></i>
-                <span class="small">Gendelf teh gey</span>
+                <ul class="fa-ul">
+                    <li class="section-name">
+                        <span class="fa-li">
+                            <i class="fas fa-map-marker" title="Seção"></i>
+                        </span>
+                        LOTR memes
+                    </li>
+                    <li class="author-name">
+                        <span class="fa-li">
+                            <i class="fas fa-user" title="Autor"></i>
+                        </span>
+                        Gendelf teh gey
+                    </li>
+                </ul>
             </section>
             <section class="post-content">
                 <img class="img-card-bottom" src="../res/meme_2.png">
             </section>
             <section class="post-actions">
                 <section class="vote-section">
-                    <button class="btn-round upvote active" type="button">
+                    <button class="btn-round upvote active" type="button" title="Upvote">
                         <i class="fas fa-lg fa-angle-up"></i>
                     </button>
                     <span class="upvote-counter upvoted">1.2k</span>
-                    <button class="btn-round downvote" type="button">
+                    <button class="btn-round downvote" type="button" title="Downvote">
                         <i class="fas fa-lg fa-angle-down"></i>
                     </button>
                 </section>
-                <button type="button" class="btn-round">
+                <button type="button" class="btn-round" title="Comentários">
                     <i class="fas fa-lg fa-comment-alt"></i>
                 </button>
-                <button type="button" class="btn-round">
+                <button type="button" class="btn-round" title="Compartilhar">
                     <i class="fas fa-lg fa-share-square"></i>
                 </button>
             </section>
@@ -100,26 +120,38 @@
         <article class="post" id="post-103">
             <section class="post-info">
                 <h1>Rick and Morty got renewed for 70 new episodes</h1>
-                <i class="fas fa-user"></i>
-                <span class="small">definately not Evil Morty</span>
+                <ul class="fa-ul">
+                    <li class="section-name">
+                        <span class="fa-li">
+                            <i class="fas fa-map-marker" title="Seção"></i>
+                        </span>
+                        Rick &amp; Morty
+                    </li>
+                    <li class="author-name">
+                        <span class="fa-li">
+                            <i class="fas fa-user" title="Autor"></i>
+                        </span>
+                        definately not Evil Morty
+                    </li>
+                </ul>
             </section>
             <section class="post-content">
                 <img class="img-card-bottom" src="../res/meme_3.gif">
             </section>
             <section class="post-actions">
                 <section class="vote-section">
-                    <button class="btn-round upvote" type="button">
+                    <button class="btn-round upvote active" type="button" title="Upvote">
                         <i class="fas fa-lg fa-angle-up"></i>
                     </button>
-                    <span class="upvote-counter">10k</span>
-                    <button class="btn-round downvote" type="button">
+                    <span class="upvote-counter upvoted">10k</span>
+                    <button class="btn-round downvote" type="button" title="Downvote">
                         <i class="fas fa-lg fa-angle-down"></i>
                     </button>
                 </section>
-                <button type="button" class="btn-round">
+                <button type="button" class="btn-round" title="Comentários">
                     <i class="fas fa-lg fa-comment-alt"></i>
                 </button>
-                <button type="button" class="btn-round">
+                <button type="button" class="btn-round" title="Compartilhar">
                     <i class="fas fa-lg fa-share-square"></i>
                 </button>
             </section>

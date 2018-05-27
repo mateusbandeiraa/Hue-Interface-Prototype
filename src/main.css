@@ -88,7 +88,7 @@ body {
     padding: 10px;
 }
 
-.post .post-actions .btn-round{
+.post .post-actions .btn-round {
     font-size: 1rem;
 }
 
@@ -102,12 +102,19 @@ body {
 
 .post .post-info {
     border-bottom: 1px solid #D3D3D3;
-    padding: 10px;
+    padding: 10px 10px 3px 10px;
 }
 
 .post .post-info h1 {
     font-size: 1.1em;
     margin: 0 0 5px;
+}
+
+.post .post-info .fa-ul {
+    list-style-type: none;
+    margin: 0 0 0 1.5em;
+    padding-left: 0;
+    line-height: 1.3em;
 }
 
 .text-round {
@@ -174,7 +181,8 @@ header .btn-round {
 }
 
 /* Only affects header buttons */
-header>section> .btn-round {
+
+header>section>.btn-round {
     font-size: 1rem;
     height: 40px;
     width: 40px;
@@ -231,7 +239,7 @@ header.active>nav {
     margin-top: 0;
 }
 
-nav ul {
+ul.simple {
     display: inline;
     list-style-type: none;
     -webkit-margin-before: 0;
