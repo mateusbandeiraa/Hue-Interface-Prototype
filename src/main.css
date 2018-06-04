@@ -54,13 +54,13 @@ body {
 .btn-round:hover {
     background-color: #1E90FF;
     color: #FFF;
-    border: blue;
+    border-color: #54ABFF;
 }
 
 .downvote.active {
     background-color: #FF6640;
     color: #FFF;
-    border: blue;
+    border-color: #54ABFF;
 }
 
 .invisible {
