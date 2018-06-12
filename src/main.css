@@ -80,13 +80,21 @@ body {
 .btn-round:hover {
     background-color: #1E90FF;
     color: #FFF;
+<<<<<<< HEAD
     border-color: #1E90FF;
+=======
+    border-color: #54ABFF;
+>>>>>>> 3237f82b6ea58b6d0d85107c52bd9831c7f79f5d
 }
 
 .downvote.active {
     background-color: #FF6640;
     color: #FFF;
+<<<<<<< HEAD
     border-color: #FF6640;
+=======
+    border-color: #54ABFF;
+>>>>>>> 3237f82b6ea58b6d0d85107c52bd9831c7f79f5d
 }
 
 .invisible {
@@ -110,7 +118,7 @@ body {
     justify-content: space-between;
     flex-wrap: nowrap;
     align-items: center;
-    overflow: scroll;
+    overflow: auto;
     padding: 10px;
 }
 
