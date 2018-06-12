@@ -5,11 +5,11 @@ body {
 #hue-logo {
     height: 50px;
     cursor: pointer;
-    -webkit-transition: height .25s, opacity .15s;
-    -moz-transition: height .25s, opacity .15s;
-    -o-transition: height .25s, opacity .15s;
-    transition: height .25s, opacity .15s;
-    margin: 0 auto;
+    -webkit-transition: height .25s, opacity .15s, position .25s;
+    -moz-transition: height .25s, opacity .15s, position .25s;
+    -o-transition: height .25s, opacity .15s, position .25s;
+    transition: height .25s, opacity .15s, position .25s;
+    margin: 0 5px;
 }
 
 #hue-logo path {
@@ -27,12 +27,38 @@ body {
     margin: 75px 10px 0;
 }
 
+#posts-section>h1 {
+    display: none;
+}
+
+#search {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    width: 46px;
+    max-width: 396px;
+    transition: flex .75s;
+}
+
+#search.active {
+    flex-grow: 1;
+}
+
 #search-field {
+    transition: width .75s, opacity .75s, margin .75s;
+    width: 0;
+    padding: 0;
+    border: 0;
+    margin: 0;
+    opacity: 0;
+    display: inline;
+}
+
+#search-field.visible {
     width: 100%;
-    max-width: 350px;
+    opacity: 100;
     margin-left: 10px;
     margin-right: 10px;
-    flex-shrink: 1;
 }
 
 .btn-round {
@@ -54,13 +80,13 @@ body {
 .btn-round:hover {
     background-color: #1E90FF;
     color: #FFF;
-    border: blue;
+    border-color: #1E90FF;
 }
 
 .downvote.active {
     background-color: #FF6640;
     color: #FFF;
-    border: blue;
+    border-color: #FF6640;
 }
 
 .invisible {
@@ -88,6 +114,32 @@ body {
     padding: 10px;
 }
 
+.post-actions>* {
+    width: 33%;
+}
+
+@media screen and (max-width: 375px) {
+    .post-actions>* {
+        width: auto;
+    }
+}
+
+.post-actions>.align-left {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.post-actions>.align-center {
+    display: flex;
+    justify-content: center;
+}
+
+.post-actions>.align-right {
+    display: flex;
+    justify-content: flex-end;
+}
+
 .post .post-actions .btn-round {
     font-size: 1rem;
 }
@@ -105,7 +157,7 @@ body {
     padding: 10px 10px 3px 10px;
 }
 
-.post .post-info h1 {
+.post .post-info h2 {
     font-size: 1.1em;
     margin: 0 0 5px;
 }
@@ -126,6 +178,7 @@ body {
 }
 
 .upvote-counter {
+    margin: auto 2px;
     -webkit-transition: all .15s ease;
     -moz-transition: all .15s ease;
     -o-transition: all .15s ease;
@@ -182,20 +235,20 @@ header .btn-round {
 
 /* Only affects header buttons */
 
-header>section>.btn-round {
+header>div>.btn-round {
     font-size: 1rem;
     height: 40px;
     width: 40px;
     padding: 0;
 }
 
-header .btn-round:hover {
+header .btn-round:hover, header .btn-round.active {
     color: grey;
     background-color: #FFF;
     border-color: grey;
 }
 
-header section {
+header>div {
     width: 90%;
     height: 65px;
     position: fixed;

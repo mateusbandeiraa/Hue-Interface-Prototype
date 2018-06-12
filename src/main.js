@@ -8,22 +8,12 @@ $(document).ready(function () {
         }
     });
 
-    $("#btn-search").click(function () {
-        if ($("#search-field").val() == "") {
-            toggleSearch();
-        } else {
-            // DO SEARCH
-        }
+    $("#btn-search").click(function(){
+        toggleSearch();
     });
 
     $("#nav-toggler").click(function () {
         toggleNav();
-    });
-
-    $("#search-field").blur(function () {
-        if ($("#search-field").val() == "" && !$("#btn-search").is(":hover")) {
-            toggleSearch();
-        }
     });
 
     $(".upvote").click(function (e) {
@@ -54,16 +44,6 @@ function scrollTop() {
     $('html, body').animate({ scrollTop: 0 }, 'fast');
 }
 
-function toggleSearch() {
-    var searchVisible = $("#search-field").hasClass("visible");
-
-    if (searchVisible) {
-        hideSearch();
-    } else {
-        showSearch();
-    }
-}
-
 function toggleNav() {
     var header = $("header");
     var nav = $("nav");
@@ -76,15 +56,18 @@ function toggleNav() {
     }
 }
 
-function showSearch() {
+function toggleSearch(){
+    var searchDiv = $("#search");
     var searchField = $("#search-field");
-    var logo = $("#hue-logo");
-    logo.removeClass("visible").addClass("invisible");
-    searchField.removeClass("invisible").addClass("visible").focus();
-}
-function hideSearch() {
-    var searchField = $("#search-field");
-    var logo = $("#hue-logo");
-    searchField.removeClass("visible").addClass("invisible");
-    logo.removeClass("invisible").addClass("visible")
+    var btnSearch = $("#btn-search");
+
+    if(searchField.hasClass("visible")){
+        searchField.removeClass("visible");
+        searchDiv.removeClass("active");
+        btnSearch.removeClass("active");
+    }else{
+        searchDiv.addClass("active");
+        searchField.addClass("visible");
+        btnSearch.addClass("active");
+    }
 }
