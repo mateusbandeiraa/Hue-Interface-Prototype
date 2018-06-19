@@ -2,6 +2,16 @@ body {
     background-color: #f1f1f1;
 }
 
+mark {
+    background: linear-gradient(135deg, #2C00E9, #FF6640);
+    color: white;
+    padding: 3px 5px;
+    border-radius: 5px;
+    display: inline-block;
+    cursor: default;
+    transition: all .25s;
+}
+
 #hue-logo {
     height: 50px;
     cursor: pointer;
@@ -20,15 +30,60 @@ body {
     height: 55px;
 }
 
+#main-section {
+    margin: 75px 10px 0;
+    display: flex;
+    justify-content: center;
+}
+
 #posts-section {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 75px 10px 0;
+    max-width: 650px;
 }
 
 #posts-section>h1 {
     display: none;
+}
+
+aside {
+    position: fixed;
+    box-sizing: border-box;
+    border: 1px solid #D3D3D3;
+    border-radius: 7px;
+    background-color: white;
+    left: 0;
+    display: block;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, .05);
+    margin-left: 15px;
+    width: calc(50% - 650px / 2 - 30px);
+}
+
+@media screen and (max-width: 1023px) {
+    aside {
+        margin: 0 0 10px 0;
+        position: relative;
+        width: 100%;
+        max-width: 650px;
+    }
+    #main-section {
+        flex-flow: column;
+        align-items: center;
+    }
+}
+
+aside>#details {
+    padding: 5px;
+}
+
+#greeting {
+    margin-top: 5px;
+    padding: 0 5px 2px 5px;
+    display: block;
+    font-weight: bold;
+    font-size: 1.1em;
+    border-bottom: 1px solid #D3D3D3;
 }
 
 #search {
@@ -47,18 +102,19 @@ body {
 #search-field {
     transition: width .75s, opacity .75s, margin .75s;
     width: 0;
-    padding: 0;
     border: 0;
     margin: 0;
     opacity: 0;
     display: inline;
 }
 
-#search-field.visible {
+#search-field.active {
     width: 100%;
     opacity: 100;
     margin-left: 10px;
     margin-right: 10px;
+    display: inline;
+    opacity: 1;
 }
 
 .btn-round {
@@ -71,9 +127,6 @@ body {
     background-color: #F5F5F5;
     cursor: pointer;
     flex-shrink: 0;
-    -webkit-transition: all .15s ease;
-    -moz-transition: all .15s ease;
-    -o-transition: all .15s ease;
     transition: all .15s ease;
 }
 
@@ -89,11 +142,6 @@ body {
     border-color: #FF6640;
 }
 
-.invisible {
-    display: none;
-    opacity: 0;
-}
-
 .post {
     background-color: #fff;
     border: 1px solid #D3D3D3;
@@ -101,7 +149,6 @@ body {
     box-shadow: 0 2px 5px rgba(0, 0, 0, .05);
     margin-bottom: 10px;
     width: 100%;
-    max-width: 650px;
 }
 
 .post .post-actions {
@@ -171,6 +218,8 @@ body {
 
 .text-round {
     height: 35px;
+    padding-left: 5px;
+    padding-right: 5px;
     font-size: 100%;
     border-radius: 7px;
     border: 1px solid grey;
@@ -201,11 +250,6 @@ body {
     border: #FFF;
 }
 
-.visible {
-    display: inline;
-    opacity: 1;
-}
-
 body {
     font-family: sans-serif;
     /* box-sizing: border-box; */
@@ -231,6 +275,7 @@ header .btn-round {
     background-color: transparent;
     color: #FFF;
     border-color: #FFF;
+    padding: 0;
 }
 
 /* Only affects header buttons */
@@ -242,7 +287,8 @@ header>div>.btn-round {
     padding: 0;
 }
 
-header .btn-round:hover, header .btn-round.active {
+header .btn-round:hover,
+header .btn-round.active {
     color: grey;
     background-color: #FFF;
     border-color: grey;
