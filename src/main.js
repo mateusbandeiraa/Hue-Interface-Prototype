@@ -21,7 +21,7 @@ $(document).ready(function () {
         } else {
             var location = window.location.href;
             location = location.substring(0, location.lastIndexOf('/'));
-            window.location.href = location + "/search.html?q=" + encodeURI(query);
+            window.location.href = location + "/busca.html?q=" + encodeURI(query);
         }
     });
 
