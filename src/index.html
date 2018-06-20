@@ -25,7 +25,9 @@
                 />
             </svg>
             <div id="search">
-                <input type="text" class="text-round" id="search-field">
+                <!-- <form id="search-form" action="#" method="GET"> -->
+                    <input class="text-round" id="search-field">
+                <!-- </form> -->
                 <button class="btn-round" id="btn-search" type="button" title="Pesquisar">
                     <i class="fas fa-lg fa-search"></i>
             </div>
@@ -42,142 +44,151 @@
             </ul>
         </nav>
     </header>
-    <section id="posts-section">
-        <h1>Home</h1>
-        <article class="post" id="post-101">
-            <section class="post-info">
-                <h2>Magnificent, aren't they?</h2>
-                <ul class="fa-ul">
-                    <li class="section-name">
-                        <span class="fa-li">
-                            <i class="fas fa-map-marker" title="Seção"></i>
-                        </span>Star Wars Prequels</li>
-                    <li class="author-name">
-                        <span class="fa-li">
-                            <i class="fas fa-user" title="Autor"></i>
-                        </span>Obi-Wan Quibebe</li>
-                </ul>
-            </section>
-            <section class="post-content">
-                <img class="img-card-bottom" src="../res/meme_1.jpg"
-                alt="Upper text: 'How many Obi-Wan memes do you have on your phone?'
+    <section id="main-section">
+            <h1>Home</h1>
+        <aside>
+            <span id="greeting">Bem vindo, visitante!</span>
+            <div id="details">
+                <span>Você está vendo os
+                    <mark>
+                        <i class="fas fa-star"></i> TOP POSTS</mark>
+                </span>
+            </div>
+        </aside>
+        <div id="posts-section">
+            
+            <article class="post" id="post-101">
+                <section class="post-info">
+                    <h2>Magnificent, aren't they?</h2>
+                    <ul class="fa-ul">
+                        <li class="section-name">
+                            <span class="fa-li">
+                                <i class="fas fa-map-marker" title="Seção"></i>
+                            </span>Star Wars Prequels</li>
+                        <li class="author-name">
+                            <span class="fa-li">
+                                <i class="fas fa-user" title="Autor"></i>
+                            </span>Obi-Wan Quibebe</li>
+                    </ul>
+                </section>
+                <section class="post-content">
+                    <img class="img-card-bottom" src="../res/meme_1.jpg" alt="Upper text: 'How many Obi-Wan memes do you have on your phone?'
                 Image: Obi-Wan and Lama Su walking on a corridor. Obi-Wan is looking at a clone army.
                 Scene subtitle: '200,000 with more than a million well on the way'">
-            </section>
-            <section class="post-actions">
-                <div class="align-left">
-                    <button class="btn-round upvote active" type="button" title="Upvote">
-                        <i class="fas fa-lg fa-angle-up"></i>
-                    </button>
-                    <span class="upvote-counter upvoted">15k</span>
-                    <button class="btn-round downvote" type="button" title="Downvote">
-                        <i class="fas fa-lg fa-angle-down"></i>
-                    </button>
-                </div>
-                <div class="align-center">
-                    <button type="button" class="btn-round" title="Comentários">
-                        <i class="fas fa-lg fa-comment-alt"></i>
-                    </button>
-                </div>
-                <div class="align-right">
-                    <button type="button" class="btn-round" title="Compartilhar">
-                        <i class="fas fa-lg fa-share-square"></i>
-                    </button>
-                </div>
-            </section>
-        </article>
+                </section>
+                <section class="post-actions">
+                    <div class="align-left">
+                        <button class="btn-round upvote active" type="button" title="Upvote">
+                            <i class="fas fa-lg fa-angle-up"></i>
+                        </button>
+                        <span class="upvote-counter upvoted">15k</span>
+                        <button class="btn-round downvote" type="button" title="Downvote">
+                            <i class="fas fa-lg fa-angle-down"></i>
+                        </button>
+                    </div>
+                    <div class="align-center">
+                        <button type="button" class="btn-round" title="Comentários">
+                            <i class="fas fa-lg fa-comment-alt"></i>
+                        </button>
+                    </div>
+                    <div class="align-right">
+                        <button type="button" class="btn-round" title="Compartilhar">
+                            <i class="fas fa-lg fa-share-square"></i>
+                        </button>
+                    </div>
+                </section>
+            </article>
 
-        <article class="post" id="post-102">
-            <section class="post-info">
-                <h2>When your pizza slides off the plate and lands face-down on the floor</h2>
-                <ul class="fa-ul">
-                    <li class="section-name">
-                        <span class="fa-li">
-                            <i class="fas fa-map-marker" title="Seção"></i>
-                        </span>
-                        LOTR memes
-                    </li>
-                    <li class="author-name">
-                        <span class="fa-li">
-                            <i class="fas fa-user" title="Autor"></i>
-                        </span>
-                        Gendelf teh gey
-                    </li>
-                </ul>
-            </section>
-            <section class="post-content">
-                <img class="img-card-bottom" src="../res/meme_2.png"
-                alt="Image: Theoden King
+            <article class="post" id="post-102">
+                <section class="post-info">
+                    <h2>When your pizza slides off the plate and lands face-down on the floor</h2>
+                    <ul class="fa-ul">
+                        <li class="section-name">
+                            <span class="fa-li">
+                                <i class="fas fa-map-marker" title="Seção"></i>
+                            </span>
+                            LOTR memes
+                        </li>
+                        <li class="author-name">
+                            <span class="fa-li">
+                                <i class="fas fa-user" title="Autor"></i>
+                            </span>
+                            Gendelf teh gey
+                        </li>
+                    </ul>
+                </section>
+                <section class="post-content">
+                    <img class="img-card-bottom" src="../res/meme_2.png" alt="Image: Theoden King
                 Scene subtitle: 'What can men do against such reckless hate?'">
-            </section>
-            <section class="post-actions">
-                <div class="align-left">
-                    <button class="btn-round upvote active" type="button" title="Upvote">
-                        <i class="fas fa-lg fa-angle-up"></i>
-                    </button>
-                    <span class="upvote-counter upvoted">1.2k</span>
-                    <button class="btn-round downvote" type="button" title="Downvote">
-                        <i class="fas fa-lg fa-angle-down"></i>
-                    </button>
-                </div>
-                <div class="align-center">
-                    <button type="button" class="btn-round" title="Comentários">
-                        <i class="fas fa-lg fa-comment-alt"></i>
-                    </button>
-                </div>
-                <div class="align-right">
-                    <button type="button" class="btn-round" title="Compartilhar">
-                        <i class="fas fa-lg fa-share-square"></i>
-                    </button>
-                </div>
-            </section>
-        </article>
+                </section>
+                <section class="post-actions">
+                    <div class="align-left">
+                        <button class="btn-round upvote active" type="button" title="Upvote">
+                            <i class="fas fa-lg fa-angle-up"></i>
+                        </button>
+                        <span class="upvote-counter upvoted">1.2k</span>
+                        <button class="btn-round downvote" type="button" title="Downvote">
+                            <i class="fas fa-lg fa-angle-down"></i>
+                        </button>
+                    </div>
+                    <div class="align-center">
+                        <button type="button" class="btn-round" title="Comentários">
+                            <i class="fas fa-lg fa-comment-alt"></i>
+                        </button>
+                    </div>
+                    <div class="align-right">
+                        <button type="button" class="btn-round" title="Compartilhar">
+                            <i class="fas fa-lg fa-share-square"></i>
+                        </button>
+                    </div>
+                </section>
+            </article>
 
-        <article class="post" id="post-103">
-            <section class="post-info">
-                <h2>Rick and Morty got renewed for 70 new episodes</h2>
-                <ul class="fa-ul">
-                    <li class="section-name">
-                        <span class="fa-li">
-                            <i class="fas fa-map-marker" title="Seção"></i>
-                        </span>
-                        Rick &amp; Morty
-                    </li>
-                    <li class="author-name">
-                        <span class="fa-li">
-                            <i class="fas fa-user" title="Autor"></i>
-                        </span>
-                        definately not Evil Morty
-                    </li>
-                </ul>
-            </section>
-            <section class="post-content">
-                <img class="img-card-bottom" src="../res/meme_3.gif"
-                alt="Gif: Morty having seizures on the floor
+            <article class="post" id="post-103">
+                <section class="post-info">
+                    <h2>Rick and Morty got renewed for 70 new episodes</h2>
+                    <ul class="fa-ul">
+                        <li class="section-name">
+                            <span class="fa-li">
+                                <i class="fas fa-map-marker" title="Seção"></i>
+                            </span>
+                            Rick &amp; Morty
+                        </li>
+                        <li class="author-name">
+                            <span class="fa-li">
+                                <i class="fas fa-user" title="Autor"></i>
+                            </span>
+                            definately not Evil Morty
+                        </li>
+                    </ul>
+                </section>
+                <section class="post-content">
+                    <img class="img-card-bottom" src="../res/meme_3.gif" alt="Gif: Morty having seizures on the floor
                 subtitle: 'Uncontrollably excited'">
-            </section>
-            <section class="post-actions">
-                <div class="align-left">
-                    <button class="btn-round upvote active" type="button" title="Upvote">
-                        <i class="fas fa-lg fa-angle-up"></i>
-                    </button>
-                    <span class="upvote-counter upvoted">10k</span>
-                    <button class="btn-round downvote" type="button" title="Downvote">
-                        <i class="fas fa-lg fa-angle-down"></i>
-                    </button>
-                </div>
-                <div class="align-center">
-                    <button type="button" class="btn-round" title="Comentários">
-                        <i class="fas fa-lg fa-comment-alt"></i>
-                    </button>
-                </div>
-                <div class="align-right">
-                    <button type="button" class="btn-round" title="Compartilhar">
-                        <i class="fas fa-lg fa-share-square"></i>
-                    </button>
-                </div>
-            </section>
-        </article>
+                </section>
+                <section class="post-actions">
+                    <div class="align-left">
+                        <button class="btn-round upvote active" type="button" title="Upvote">
+                            <i class="fas fa-lg fa-angle-up"></i>
+                        </button>
+                        <span class="upvote-counter upvoted">10k</span>
+                        <button class="btn-round downvote" type="button" title="Downvote">
+                            <i class="fas fa-lg fa-angle-down"></i>
+                        </button>
+                    </div>
+                    <div class="align-center">
+                        <button type="button" class="btn-round" title="Comentários">
+                            <i class="fas fa-lg fa-comment-alt"></i>
+                        </button>
+                    </div>
+                    <div class="align-right">
+                        <button type="button" class="btn-round" title="Compartilhar">
+                            <i class="fas fa-lg fa-share-square"></i>
+                        </button>
+                    </div>
+                </section>
+            </article>
+        </div>
     </section>
 </body>
 
