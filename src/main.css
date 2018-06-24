@@ -36,12 +36,13 @@ mark {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 75px 10px;
+    margin: 75px 10px 0 10px;
     width: 100%;
     max-width: 650px;
 }
 
-#main-section>h1, header>h1 {
+#main-section>h1,
+header>h1 {
     display: none !important;
 }
 
@@ -287,6 +288,8 @@ header .btn-round {
     background-color: transparent;
     color: #FFF;
     border-color: #FFF;
+    /* Culpa do iOS*/
+    max-width: 100%;
 }
 
 /* Only affects header buttons */
@@ -298,7 +301,8 @@ header>div>.btn-round {
     padding: 0;
 }
 
-header .btn-round:hover, header .btn-round.active {
+header .btn-round:hover,
+header .btn-round.active {
     color: grey;
     background-color: #FFF;
     border-color: grey;
@@ -328,7 +332,9 @@ li>.btn-round {
     text-decoration: none;
     box-sizing: border-box;
 }
-nav, #form-wrapper{
+
+nav,
+#form-wrapper {
     display: flex;
     height: 100%;
     width: 50%;
@@ -338,9 +344,8 @@ nav, #form-wrapper{
 }
 
 nav {
-
     /* Evita que o nav sobreponha o logo do header*/
-    margin-top: 200px;
+    margin-top: 500px;
     transition: opacity .15s, margin .5s;
     transition-delay: opacity .1s;
     opacity: 0;
@@ -359,4 +364,38 @@ ul.simple {
     -webkit-margin-start: 0;
     -webkit-margin-end: 0;
     -webkit-padding-start: 0;
+    margin: 0;
+    padding: 0;
+}
+
+#btn-collapse-menu {
+    font-size: 2em;
+    color: white;
+    background: none;
+    border: none;
+    cursor: pointer;
+    transition: all .25s;
+    position: absolute;
+    bottom: 0;
+    align-self: center;
+    display: none;
+}
+
+header.active #btn-collapse-menu {
+    display: block;
+}
+
+#btn-collapse-menu:hover {
+    color: #1E90FF;
+}
+
+a.discrete:link,
+a.discrete:visited {
+    text-decoration: none;
+    color: black;
+}
+
+.btn-subscribe.active{
+    background-color: #228B22;
+    color: white;
 }

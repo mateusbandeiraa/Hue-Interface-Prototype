@@ -12,6 +12,60 @@
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
         crossorigin="anonymous"></script>
     <script src="main.js"></script>
+    <script>
+        $(document).ready(function () {
+            if (user != "") {
+                //console.log(user);
+                $("#greeting").html("Bem vindo, " + user.name);
+
+                $("#btn-logout").click(function () {
+                    logout();
+                });
+            }
+
+            var postsSection = $("#posts-section");
+            // console.log(user);
+            if (user == "") {
+                for (var i = 0; i < posts.length; i++) {
+                    $(postsSection).append(generatePostHTML(posts[i]));
+                }
+            } else {
+                refreshSubscribings();
+                //console.log('aha');
+                var subscribedSections = subscribings.filter(x => x.user == user.email); // Obrigado Daniel por explicar essa bagaça
+                var postsToShow = [];
+                for (var i = 0; i < subscribedSections.length; i++) {
+                    // console.log(subscribedSections[i].section);
+                    postsToShow = postsToShow.concat(posts.filter(x => x.section == subscribedSections[i].section));
+                }
+
+                // Arranja os posts por pontuação
+                postsToShow.sort(function (a, b) {
+                    var scoreA = getScore(a);
+                    var scoreB = getScore(b);
+
+                    if (scoreA > scoreB) {
+                        return -1;
+                    } else if (scoreA < scoreB) {
+                        return 1;
+                    } else {
+                        return 0;
+                    }
+                });
+                for (var i = 0; i < postsToShow.length; i++) {
+                    $(postsSection).append(generatePostHTML(postsToShow[i]));
+                }
+            }
+            $(".upvote").click(function (e) {
+                var postID = $(e.currentTarget).attr("post-id");
+                vote(user, postID, true);
+            });
+            $(".downvote").click(function (e) {
+                var postID = $(e.currentTarget).attr("post-id");
+                vote(user, postID, false);
+            });
+        });
+    </script>
 </head>
 
 <body>
@@ -24,14 +78,14 @@
                 <path d="M407.9,191.33a62.72,62.72,0,0,0-23.54-25.41q-15.17-9.18-34.85-9.17-20.22,0-36,9.44a65.53,65.53,0,0,0-24.74,26.33,75.4,75.4,0,0,0-7.49,22,10,10,0,0,1-3.39-8.07c0-.13,0-.27,0-.4s0-.4,0-.6v-122a9.65,9.65,0,0,0-2.92-7.32,10.37,10.37,0,0,0-7.45-2.79,9.59,9.59,0,0,0-10.11,10.11v78.73A34.3,34.3,0,0,1,251.26,182a41.55,41.55,0,0,1-16.63,14A53.65,53.65,0,0,1,211.09,201q-21.28,0-34.45-12.37T163.47,152.6v-2.54c0-.2,0-.39,0-.59v-8.16c0-.68,0-1.36,0-2v-.83a11,11,0,0,0-.06-1.16q-.74-18.72-8.42-32.55a57.3,57.3,0,0,0-23.54-23.28q-15-8-33.92-8A65.64,65.64,0,0,0,70.4,79.07,61.94,61.94,0,0,0,49.12,94.5v-45h0q0-20.16-10.4-34.5T12.28,0A12.37,12.37,0,0,0,3.62,3.31,10.82,10.82,0,0,0,0,11.65a12.18,12.18,0,0,0,3.15,8.51,13.2,13.2,0,0,0,9.13,4.1c5,0,8.24,1.73,11.5,6.45S28.58,41.46,28.64,49V210.47a9.65,9.65,0,0,0,2.92,7.32A10.35,10.35,0,0,0,39,220.58a9.58,9.58,0,0,0,10.11-10.11V131.74a34.23,34.23,0,0,1,6.12-19.82A41.42,41.42,0,0,1,71.86,98a53.75,53.75,0,0,1,23.54-5q21.28,0,34.45,12.37,12.77,12,13.14,34.64V152.6q0,21.28,8.51,36.58a57.21,57.21,0,0,0,23.55,23.28q15,8,33.91,8a65.79,65.79,0,0,0,27.13-5.58,62,62,0,0,0,21.28-15.43v6.05c0,.17,0,.34,0,.51s0,.32,0,.49Q257.91,220,270,228.81a44.16,44.16,0,0,0,9.87,5.39,76,76,0,0,0,9.38,34.93,67.34,67.34,0,0,0,26.2,26.33q16.76,9.45,38,9.45A76.41,76.41,0,0,0,379.57,300q13.56-4.92,22.34-12.37a8.07,8.07,0,0,0,2.93-6.12,9.61,9.61,0,0,0-3.46-7.18,9.9,9.9,0,0,0-5.85-2.13,11.63,11.63,0,0,0-7.18,2.66,46.94,46.94,0,0,1-15.56,8.38,59.22,59.22,0,0,1-19.29,3.32q-22.35,0-37.24-13.56t-17-35.38H406.7a9.64,9.64,0,0,0,6.92-2.53,8.91,8.91,0,0,0,2.66-6.78Q416.28,207.56,407.9,191.33ZM300.44,220.58a3.43,3.43,0,0,0-.64-.21q3-20.33,16.19-32.77t33.52-12.5q20,0,32.72,12.5t14.89,33Z"
                 />
             </svg>
-            <div id="search">
-                <!-- <form id="search-form" action="#" method="GET"> -->
-                    <input class="text-round" id="search-field">
-                <!-- </form> -->
+            <form id="search" action="#" method="GET">
+                
+                <input class="text-round" id="search-field">
+                
                 <button class="btn-round" id="btn-search" type="button" title="Pesquisar">
                     <i class="fas fa-lg fa-search"></i>
-            </div>
-            </button>
+                </button>
+            </form>
         </div>
         <nav>
             <ul class="simple">
@@ -42,10 +96,13 @@
                     <a class="btn-round" href="cadastro.html">Cadastro</a>
                 </li>
             </ul>
+            <button id="btn-collapse-menu">
+                <i class="fas fa-angle-up"></i>
+            </button>
         </nav>
     </header>
     <section id="main-section">
-            <h1>Home</h1>
+        <h1>Home</h1>
         <aside>
             <span id="greeting">Bem vindo, visitante!</span>
             <div id="details">
@@ -56,138 +113,8 @@
             </div>
         </aside>
         <div id="posts-section">
-            
-            <article class="post" id="post-101">
-                <section class="post-info">
-                    <h2>Magnificent, aren't they?</h2>
-                    <ul class="fa-ul">
-                        <li class="section-name">
-                            <span class="fa-li">
-                                <i class="fas fa-map-marker" title="Seção"></i>
-                            </span>Star Wars Prequels</li>
-                        <li class="author-name">
-                            <span class="fa-li">
-                                <i class="fas fa-user" title="Autor"></i>
-                            </span>Obi-Wan Quibebe</li>
-                    </ul>
-                </section>
-                <section class="post-content">
-                    <img class="img-card-bottom" src="../res/meme_1.jpg" alt="Upper text: 'How many Obi-Wan memes do you have on your phone?'
-                Image: Obi-Wan and Lama Su walking on a corridor. Obi-Wan is looking at a clone army.
-                Scene subtitle: '200,000 with more than a million well on the way'">
-                </section>
-                <section class="post-actions">
-                    <div class="align-left">
-                        <button class="btn-round upvote active" type="button" title="Upvote">
-                            <i class="fas fa-lg fa-angle-up"></i>
-                        </button>
-                        <span class="upvote-counter upvoted">15k</span>
-                        <button class="btn-round downvote" type="button" title="Downvote">
-                            <i class="fas fa-lg fa-angle-down"></i>
-                        </button>
-                    </div>
-                    <div class="align-center">
-                        <button type="button" class="btn-round" title="Comentários">
-                            <i class="fas fa-lg fa-comment-alt"></i>
-                        </button>
-                    </div>
-                    <div class="align-right">
-                        <button type="button" class="btn-round" title="Compartilhar">
-                            <i class="fas fa-lg fa-share-square"></i>
-                        </button>
-                    </div>
-                </section>
-            </article>
 
-            <article class="post" id="post-102">
-                <section class="post-info">
-                    <h2>When your pizza slides off the plate and lands face-down on the floor</h2>
-                    <ul class="fa-ul">
-                        <li class="section-name">
-                            <span class="fa-li">
-                                <i class="fas fa-map-marker" title="Seção"></i>
-                            </span>
-                            LOTR memes
-                        </li>
-                        <li class="author-name">
-                            <span class="fa-li">
-                                <i class="fas fa-user" title="Autor"></i>
-                            </span>
-                            Gendelf teh gey
-                        </li>
-                    </ul>
-                </section>
-                <section class="post-content">
-                    <img class="img-card-bottom" src="../res/meme_2.png" alt="Image: Theoden King
-                Scene subtitle: 'What can men do against such reckless hate?'">
-                </section>
-                <section class="post-actions">
-                    <div class="align-left">
-                        <button class="btn-round upvote active" type="button" title="Upvote">
-                            <i class="fas fa-lg fa-angle-up"></i>
-                        </button>
-                        <span class="upvote-counter upvoted">1.2k</span>
-                        <button class="btn-round downvote" type="button" title="Downvote">
-                            <i class="fas fa-lg fa-angle-down"></i>
-                        </button>
-                    </div>
-                    <div class="align-center">
-                        <button type="button" class="btn-round" title="Comentários">
-                            <i class="fas fa-lg fa-comment-alt"></i>
-                        </button>
-                    </div>
-                    <div class="align-right">
-                        <button type="button" class="btn-round" title="Compartilhar">
-                            <i class="fas fa-lg fa-share-square"></i>
-                        </button>
-                    </div>
-                </section>
-            </article>
 
-            <article class="post" id="post-103">
-                <section class="post-info">
-                    <h2>Rick and Morty got renewed for 70 new episodes</h2>
-                    <ul class="fa-ul">
-                        <li class="section-name">
-                            <span class="fa-li">
-                                <i class="fas fa-map-marker" title="Seção"></i>
-                            </span>
-                            Rick &amp; Morty
-                        </li>
-                        <li class="author-name">
-                            <span class="fa-li">
-                                <i class="fas fa-user" title="Autor"></i>
-                            </span>
-                            definately not Evil Morty
-                        </li>
-                    </ul>
-                </section>
-                <section class="post-content">
-                    <img class="img-card-bottom" src="../res/meme_3.gif" alt="Gif: Morty having seizures on the floor
-                subtitle: 'Uncontrollably excited'">
-                </section>
-                <section class="post-actions">
-                    <div class="align-left">
-                        <button class="btn-round upvote active" type="button" title="Upvote">
-                            <i class="fas fa-lg fa-angle-up"></i>
-                        </button>
-                        <span class="upvote-counter upvoted">10k</span>
-                        <button class="btn-round downvote" type="button" title="Downvote">
-                            <i class="fas fa-lg fa-angle-down"></i>
-                        </button>
-                    </div>
-                    <div class="align-center">
-                        <button type="button" class="btn-round" title="Comentários">
-                            <i class="fas fa-lg fa-comment-alt"></i>
-                        </button>
-                    </div>
-                    <div class="align-right">
-                        <button type="button" class="btn-round" title="Compartilhar">
-                            <i class="fas fa-lg fa-share-square"></i>
-                        </button>
-                    </div>
-                </section>
-            </article>
         </div>
     </section>
 </body>
