@@ -96,15 +96,12 @@
             }
 
             if (isSubscribed(user.email, sectionID) >= 0) {
-                console.log("aha");
                 $("#section-subscribe").addClass("active");
                 $("#section-subscribe").html("<i class=\"fas fa-check\"></i>");
                 $("#section-subscribe").attr("section-id", sectionID);
             }
 
             $(".btn-subscribe").click(function (e) {
-                var sectionID = $(e.currentTarget).attr("section-id");
-
                 if (isSubscribed(user.email, sectionID) >= 0) {
                     unsubscribe(user.email, sectionID);
                     $(e.currentTarget).removeClass("active");

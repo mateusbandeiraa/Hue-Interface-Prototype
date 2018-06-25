@@ -12,6 +12,29 @@
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
         crossorigin="anonymous"></script>
     <script src="main.js"></script>
+    <style>
+        p {
+            font-size: 1.7em;
+            text-align: center;
+        }
+
+        p.warning-heading{
+            font-size: 2em;
+            font-weight: 100;
+            margin-top: 10px;
+        }
+        p.warning-heading-icon{
+            margin-bottom: 0;
+        }
+
+        #main-section a:link{
+            color: black;
+        }
+
+        #main-section a:visited{
+            color: grey;
+        }
+    </style>
     <script>
         $(document).ready(function () {
             if (user != "") {
@@ -39,21 +62,27 @@
                     postsToShow = postsToShow.concat(posts.filter(x => x.section == subscribedSections[i].section));
                 }
 
-                // Arranja os posts por pontuação
-                postsToShow.sort(function (a, b) {
-                    var scoreA = getScore(a);
-                    var scoreB = getScore(b);
+                if (postsToShow.length < 1) {
+                    $(postsSection).html("<p class=\"warning-heading-icon\"><i class=\"fas fa-exclamation-triangle\" style=\"font-size:3em; color: grey;\"></i></p><p class=\"warning-heading\">OPS!</p><p class=\"warning-body\">Você ainda não se inscreveu em nenhuma seção.</p><p>Navegue pelas seções existentes <a href=\"./busca.html?q=\">aqui.</a></p>")
+                } else {
 
-                    if (scoreA > scoreB) {
-                        return -1;
-                    } else if (scoreA < scoreB) {
-                        return 1;
-                    } else {
-                        return 0;
+                    // Arranja os posts por pontuação
+                    postsToShow.sort(function (a, b) {
+                        var scoreA = getScore(a);
+                        var scoreB = getScore(b);
+
+                        if (scoreA > scoreB) {
+                            return -1;
+                        } else if (scoreA < scoreB) {
+                            return 1;
+                        } else {
+                            return 0;
+                        }
+                    });
+                    for (var i = 0; i < postsToShow.length; i++) {
+                        $(postsSection).append(generatePostHTML(postsToShow[i]));
                     }
-                });
-                for (var i = 0; i < postsToShow.length; i++) {
-                    $(postsSection).append(generatePostHTML(postsToShow[i]));
+
                 }
             }
             $(".upvote").click(function (e) {
@@ -79,9 +108,9 @@
                 />
             </svg>
             <form id="search" action="#" method="GET">
-                
+
                 <input class="text-round" id="search-field">
-                
+
                 <button class="btn-round" id="btn-search" type="button" title="Pesquisar">
                     <i class="fas fa-lg fa-search"></i>
                 </button>
