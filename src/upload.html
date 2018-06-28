@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Hue</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+        <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/all.js" integrity="sha384-xymdQtn1n3lH2wcu0qhcdaOpQwyoarkgLVxC/wZ5q7h9gHtxICrpcaSUfygqZGOe"
+                crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+                crossorigin="anonymous"></script>
+        <script src="main.js"></script>
+        <style>
+            #main-section>h1 {
+                display: inline !important;
+                margin: 0 0 10px 0;
+                align-self: center;
+                font-size: 1.6em;
+            }
+
+            #form-upload{
+                background-color: white;
+                border: 1px solid lightgrey;
+                border-radius: 7px;
+                box-shadow: 0 2px 5px rgba(0, 0, 0, .05);
+                padding: 5px;
+            }
+            #form-upload>h2{
+                margin: 0 0 10px 0;
+            }
+            #form-upload>.group{
+                width: 100%;
+            }
+
+            .group>*{
+                width: 100%;
+                box-sizing: border-box;
+                margin-bottom: 10px;
+            }
+                    .btn-round:hover {
+            background-color: #2db92d;
+            border-width: medium;
+            border-color: #228B22;
+        }
+
+        .btn-round {
+            background-color: #2db92d;
+            color: white;
+        }
+        </style>
+        <script>
+        $(document).ready(function(){
+            var url = window.location.href;
+            var sectionID = url.substring(url.lastIndexOf("?h=") + 3);
+            var section = sections.find(x => x.id == sectionID);
+            
+            $("mark").html(section.name);
+            
+            $("#form-upload").submit(function (e){
+                e.preventDefault();
+                setCookie("posted", "true");
+                window.location.href = rootUrl + "secao.html?h=" + sectionID;
+            });
+        });
+        </script>
+    </head>
+    <body>
+        <header>
+            <div>
+                <button class="btn-round" id="nav-toggler" type="button" title="Abrir menu">
+                    <i class="fas fa-lg fa-bars"></i>
+                </button>
+                <a href="index.html">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 416.28 304.91" class="visible" id="hue-logo">
+                        <path d="M407.9,191.33a62.72,62.72,0,0,0-23.54-25.41q-15.17-9.18-34.85-9.17-20.22,0-36,9.44a65.53,65.53,0,0,0-24.74,26.33,75.4,75.4,0,0,0-7.49,22,10,10,0,0,1-3.39-8.07c0-.13,0-.27,0-.4s0-.4,0-.6v-122a9.65,9.65,0,0,0-2.92-7.32,10.37,10.37,0,0,0-7.45-2.79,9.59,9.59,0,0,0-10.11,10.11v78.73A34.3,34.3,0,0,1,251.26,182a41.55,41.55,0,0,1-16.63,14A53.65,53.65,0,0,1,211.09,201q-21.28,0-34.45-12.37T163.47,152.6v-2.54c0-.2,0-.39,0-.59v-8.16c0-.68,0-1.36,0-2v-.83a11,11,0,0,0-.06-1.16q-.74-18.72-8.42-32.55a57.3,57.3,0,0,0-23.54-23.28q-15-8-33.92-8A65.64,65.64,0,0,0,70.4,79.07,61.94,61.94,0,0,0,49.12,94.5v-45h0q0-20.16-10.4-34.5T12.28,0A12.37,12.37,0,0,0,3.62,3.31,10.82,10.82,0,0,0,0,11.65a12.18,12.18,0,0,0,3.15,8.51,13.2,13.2,0,0,0,9.13,4.1c5,0,8.24,1.73,11.5,6.45S28.58,41.46,28.64,49V210.47a9.65,9.65,0,0,0,2.92,7.32A10.35,10.35,0,0,0,39,220.58a9.58,9.58,0,0,0,10.11-10.11V131.74a34.23,34.23,0,0,1,6.12-19.82A41.42,41.42,0,0,1,71.86,98a53.75,53.75,0,0,1,23.54-5q21.28,0,34.45,12.37,12.77,12,13.14,34.64V152.6q0,21.28,8.51,36.58a57.21,57.21,0,0,0,23.55,23.28q15,8,33.91,8a65.79,65.79,0,0,0,27.13-5.58,62,62,0,0,0,21.28-15.43v6.05c0,.17,0,.34,0,.51s0,.32,0,.49Q257.91,220,270,228.81a44.16,44.16,0,0,0,9.87,5.39,76,76,0,0,0,9.38,34.93,67.34,67.34,0,0,0,26.2,26.33q16.76,9.45,38,9.45A76.41,76.41,0,0,0,379.57,300q13.56-4.92,22.34-12.37a8.07,8.07,0,0,0,2.93-6.12,9.61,9.61,0,0,0-3.46-7.18,9.9,9.9,0,0,0-5.85-2.13,11.63,11.63,0,0,0-7.18,2.66,46.94,46.94,0,0,1-15.56,8.38,59.22,59.22,0,0,1-19.29,3.32q-22.35,0-37.24-13.56t-17-35.38H406.7a9.64,9.64,0,0,0,6.92-2.53,8.91,8.91,0,0,0,2.66-6.78Q416.28,207.56,407.9,191.33ZM300.44,220.58a3.43,3.43,0,0,0-.64-.21q3-20.33,16.19-32.77t33.52-12.5q20,0,32.72,12.5t14.89,33Z"
+                              />
+                    </svg>
+                </a>
+                <form id="search" action="#" method="GET" class="active">
+                    <input type="text" class="text-round active" id="search-field">
+                    <button class="btn-round" id="btn-search" type="button" title="Pesquisar">
+                        <i class="fas fa-lg fa-search"></i>
+                    </button>
+                </form>
+            </div>
+            <nav>
+                <ul class="simple">
+                    <li>
+                        <a class="btn-round" href="login.html">Login</a>
+                    </li>
+                    <li>
+                        <a class="btn-round" href="cadastro.html">Cadastro</a>
+                    </li>
+                </ul>
+                <button id="btn-collapse-menu">
+                    <i class="fas fa-angle-up"></i>
+                </button>
+            </nav>
+        </header>
+        <div id="main-section">
+            <h1>Upload de mídia</h1>
+            <form id="form-upload">
+                <h2>Seção: <mark></mark></h2>
+                <div class="group">
+                    <input id="titulo" name="titulo" class="text-round" type="text" placeholder="Título do post" required>
+                </div>
+                <div class="group">
+                    <input type="file">
+                </div>
+                <div class="group">
+                    <textarea id="desc" name="desc" class="text-round" rows="3" placeholder="Descrição para deficientes visuais" required></textarea>
+                </div>
+                <div class="group">
+                    <input type="submit" class="btn-round" value="Publicar">
+                </div>
+            </form>
+        </div>
+    </body>
+</html>

@@ -55,11 +55,12 @@ aside {
     left: 0;
     display: block;
     box-shadow: 0 2px 5px rgba(0, 0, 0, .05);
-    margin-left: 15px;
-    width: calc(50% - 650px / 2 - 30px);
+    width: 330px;
+    margin-left: calc(50vw - 650px - 30px);
+
 }
 
-@media screen and (max-width: 1023px) {
+@media screen and (max-width: 1384px) {
     aside {
         margin: 0 0 10px 0;
         position: relative;
@@ -69,6 +70,10 @@ aside {
     #main-section {
         flex-flow: column;
         align-items: center;
+    }
+
+    #subscribed-sections{
+        display: none;
     }
 }
 

@@ -1,10 +1,13 @@
 var posts = [{ "id": 0, "section": 0, "author": "Obi-Wan Quibebe", "upvotes": 16045, "downvotes": 1001, "title": "Magnificent, aren't they?", "src": "../res/meme_1.jpg", "description": "Upper text: 'How many Obi-Wan memes do you have on your phone?'. Image: Obi-Wan and Lama Su walking on a corridor. Obi-Wan is looking at a clone army. Scene subtitle: '200,000 with more than a million well on the way'" },
 { "id": 1, "section": 1, "author": "Gendelf teh gey", "upvotes": 1300, "downvotes": 150, "title": "When your slice of pizza falls on the floor", "src": "../res/meme_2.png", "description": "Image: Theoden King. Scene subtitle: 'What can men do against such reckless hate?'" },
 { "id": 2, "section": 2, "author": "definately not Evil Morty", "upvotes": 1050, "downvotes": 45, "title": "Rick and Morty got renewed", "src": "../res/meme_3.gif", "description": "Gif: Morty having seizures on the floor. Subtitle: 'Uncontrollably excited'" },
-{ "id": 3, "section": 1, "author": "Theoden K", "upvotes": 300, "downvotes": 45, "title": "Final answer", "src": "../res/meme_4.jpg", "description": "Théoden is on the Who Wants to Be a Millionaire. The question is: 'Where was Gondor when the Westfold fell? A(Selected answer): 'Not giving a fuck', B: 'Imladris', C: 'Prancing Pony Inn', D(Correct nswer): 'Gondor'. "},
+{ "id": 3, "section": 1, "author": "Theoden K", "upvotes": 300, "downvotes": 45, "title": "Final answer", "src": "../res/meme_4.jpg", "description": "Théoden is on the Who Wants to Be a Millionaire. The question is: 'Where was Gondor when the Westfold fell? A(Selected answer): 'Not giving a fuck', B: 'Imladris', C: 'Prancing Pony Inn', D(Correct nswer): 'Gondor'. " },
 { "id": 4, "section": 0, "author": "AnaKimJong-Un", "upvotes": 66, "downvotes": 1, "title": "Just saw this on the parking lot", "src": "../res/meme_5.jpg", "description": "A silver car with a green sticker of a Toyota logo with Yoda ears. The name 'Toyoda' is written below it." },
-{ "id": 5, "section": 7, "author": "BSuser", "upvotes": 2, "downvotes": 0, "title": "Quando pego a folha do kahoot de papel", "src": "../res/meme_6.gif", "description": "Gif: Ewan McGregor olha para uma folha de papel, coloca-o sobre uma mesa e grita histéricamente." },
-{ "id": 6, "section": 7, "author": "Rickão", "upvotes": 500, "downvotes": 6, "title": "TRIGGERED", "src": "../res/meme_7.jpg", "description": "Manchete: 'SP teve 800km de cabos furtados em 4 meses'. Abaixo, Patrick Estrela está com brilho nos olhos." }];
+{ "id": 5, "section": 7, "author": "BSuser", "upvotes": 45, "downvotes": 0, "title": "Quando pego a folha do kahoot de papel", "src": "../res/meme_6.gif", "description": "Gif: Ewan McGregor olha para uma folha de papel, coloca-o sobre uma mesa e grita histéricamente." },
+{ "id": 6, "section": 4, "author": "TITIk", "upvotes": 451, "downvotes": 0, "title": "PENALTY", "src": "../res/meme_8.jpg", "description": "Cena do filme Os Simpsons." },
+{ "id": 7, "section": 4, "author": "CANARINHO PUTASSO", "upvotes": 123, "downvotes": 0, "title": "FRIO BOM PRA TE COBRIR NA PORRADA", "src": "../res/meme_9.jpg", "description": "Canarinho pistola em meio à crianças dizendo 'Frio da porra hein criançada'." },
+{ "id": 8, "section": 4, "author": "Neycai", "upvotes": 25, "downvotes": 1, "title": "Quer um papel na Globo agora?", "src": "../res/meme_10.jpg", "description": "Bruna Marquezine agredindo Neymar. Texto: 'Faz um gol, caralho!! Quem é atriz aqui sou eu!'" }
+];
 
 var sections = [{ "id": 0, "name": "Star Wars Prequels", "subscribers": 489497, "img": "../res/star_wars_prequels.jpg", "cover": "../res/star_wars_prequels_cover_2.jpg" },
 { "id": 1, "name": "LOTR Memes", "subscribers": 3791000, "img": "../res/lotr_memes.png", "cover": "../res/lotr_memes_cover.jpg" },
@@ -13,7 +16,8 @@ var sections = [{ "id": 0, "name": "Star Wars Prequels", "subscribers": 489497, 
 { "id": 4, "name": "Seleção Brasileira memes", "subscribers": 2213417, "img": "../res/selecao_brasileira.jpg", "cover": "../res/selecao_brasileira_cover.jpg" },
 { "id": 5, "name": "Nicholas Cage", "subscribers": 1526, "img": "../res/nic_cage.jpg", "cover": "../res/nic_cage_cover.jpg" },
 { "id": 6, "name": "Choque de Cultura", "subscribers": 468, "img": "../res/choque_cultura.jpg", "cover": "../res/choque_cultura_cover.png" },
-{ "id": 7, "name": "Unirisos", "subscribers": 1234, "img": "../res/unirisos.jpg", "cover": "../res/unirisos_cover.jpg" }];
+{ "id": 7, "name": "Unirisos", "subscribers": 1234, "img": "../res/unirisos.jpg", "cover": "../res/unirisos_cover.jpg" },
+{ "id": 8, "name": "Animemes", "subscribers": 15400, "img": "../res/animemes.jpg", "cover": "../res/animemes_cover.jpg" }];
 
 var postModel = "<article class=\"post\" id=\"post-%post-id%\"><section class=\"post-info\"><h2>%post-title%</h2><ul class=\"fa-ul\"><li class=\"section-name\"><a class=\"discrete\" href=\"%section-link%\"><span class=\"fa-li\"><i class=\"fas fa-map-marker\" title=\"Seção\"></i></span>%post-section%</a></li><li class=\"author-name\"><span class=\"fa-li\"><i class=\"fas fa-user\" title=\"Autor\"></i></span>%post-author%</li></ul></section><section class=\"post-content\"><img class=\"img-card-bottom\" src=\"%post-img%\" alt=\"%post-description%\"></section><section class=\"post-actions\"><div class=\"align-left\"><button class=\"btn-round upvote %upvote-active%\" type=\"button\" title=\"Upvote\" post-id=\"%post-id%\"><i class=\"fas fa-lg fa-angle-up\"></i></button><span class=\"upvote-counter %counter-active%\" post-id=\"%post-id%\">%post-score%</span><button class=\"btn-round downvote %downvote-active%\" type=\"button\" title=\"Downvote\" post-id=\"%post-id%\"><i class=\"fas fa-lg fa-angle-down\"></i></button></div><div class=\"align-center\"><button type=\"button\" class=\"btn-round\" title=\"Comentários\"><i class=\"fas fa-lg fa-comment-alt\"></i></button></div><div class=\"align-right\"><button type=\"button\" class=\"btn-round\" title=\"Compartilhar\"><i class=\"fas fa-lg fa-share-square\"></i></button></div></section></article>";
 var user = "";
@@ -57,7 +61,7 @@ $(document).ready(function () {
         }
     });
 
-    $("#search").submit(function(e){
+    $("#search").submit(function (e) {
         e.preventDefault();
         query = searchField.val();
         window.location.href = rootUrl + "busca.html?q=" + encodeURI(query);
@@ -218,7 +222,7 @@ function generatePostHTML(post) {
     return postModel.replace(/%post-id%/g, post.id).replace("%post-title%", post.title).replace("%post-section%", sections[post.section].name).replace("%section-link%", rootUrl + "secao.html?h=" + post.section).replace("%post-author%", post.author).replace("%post-img%", post.src).replace("%post-description%", post.description).replace("%upvote-active%", upActive).replace("%counter-active%", counterActive).replace("%post-score%", getScore(post)).replace("%downvote-active%", downActive);
 }
 
-function setCookie(cname, cvalue, exdays) {
+function setCookie(cname, cvalue) {
     document.cookie = cname + "=" + cvalue + ";" + ";path=/";
 }
 
@@ -243,6 +247,7 @@ function deuRuim() {
     setCookie("users", "");
     setCookie("votes", "");
     setCookie("subscribings", "");
+    setCookie("posted", "");
     user = {};
     users = [];
     votes = [];

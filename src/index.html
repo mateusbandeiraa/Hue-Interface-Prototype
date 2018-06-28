@@ -1,151 +1,218 @@
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
-<head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Hue</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
-    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/all.js" integrity="sha384-xymdQtn1n3lH2wcu0qhcdaOpQwyoarkgLVxC/wZ5q7h9gHtxICrpcaSUfygqZGOe"
-        crossorigin="anonymous"></script>
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-        crossorigin="anonymous"></script>
-    <script src="main.js"></script>
-    <style>
-        p {
-            font-size: 1.7em;
-            text-align: center;
-        }
-
-        p.warning-heading{
-            font-size: 2em;
-            font-weight: 100;
-            margin-top: 10px;
-        }
-        p.warning-heading-icon{
-            margin-bottom: 0;
-        }
-
-        #main-section a:link{
-            color: black;
-        }
-
-        #main-section a:visited{
-            color: grey;
-        }
-    </style>
-    <script>
-        $(document).ready(function () {
-            if (user != "") {
-                //console.log(user);
-                $("#greeting").html("Bem vindo, " + user.name);
-
-                $("#btn-logout").click(function () {
-                    logout();
-                });
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Hue</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+        <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/all.js" integrity="sha384-xymdQtn1n3lH2wcu0qhcdaOpQwyoarkgLVxC/wZ5q7h9gHtxICrpcaSUfygqZGOe"
+                crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+                crossorigin="anonymous"></script>
+        <script src="main.js"></script>
+        <style>
+            p {
+                font-size: 1.7em;
+                text-align: center;
             }
 
-            var postsSection = $("#posts-section");
-            // console.log(user);
-            if (user == "") {
-                for (var i = 0; i < posts.length; i++) {
-                    $(postsSection).append(generatePostHTML(posts[i]));
-                }
-            } else {
-                refreshSubscribings();
-                //console.log('aha');
-                var subscribedSections = subscribings.filter(x => x.user == user.email); // Obrigado Daniel por explicar essa bagaça
-                var postsToShow = [];
-                for (var i = 0; i < subscribedSections.length; i++) {
-                    // console.log(subscribedSections[i].section);
-                    postsToShow = postsToShow.concat(posts.filter(x => x.section == subscribedSections[i].section));
-                }
+            p.warning-heading{
+                font-size: 2em;
+                font-weight: 100;
+                margin-top: 10px;
+            }
+            p.warning-heading-icon{
+                margin-bottom: 0;
+            }
 
-                if (postsToShow.length < 1) {
-                    $(postsSection).html("<p class=\"warning-heading-icon\"><i class=\"fas fa-exclamation-triangle\" style=\"font-size:3em; color: grey;\"></i></p><p class=\"warning-heading\">OPS!</p><p class=\"warning-body\">Você ainda não se inscreveu em nenhuma seção.</p><p>Navegue pelas seções existentes <a href=\"./busca.html?q=\">aqui.</a></p>")
-                } else {
+            #main-section a:link{
+                color: black;
+            }
 
-                    // Arranja os posts por pontuação
-                    postsToShow.sort(function (a, b) {
-                        var scoreA = getScore(a);
-                        var scoreB = getScore(b);
+            #main-section a:visited{
+                color: grey;
+            }
 
-                        if (scoreA > scoreB) {
-                            return -1;
-                        } else if (scoreA < scoreB) {
-                            return 1;
-                        } else {
-                            return 0;
-                        }
+            .section-image {
+                height: 100%;
+                border-right: 1px solid lightgrey;
+                display: inline-block;
+            }
+
+            aside .section-name {
+                font-size: 1.2em;
+                margin: 0;
+            }
+
+            .section-card{
+                height: 30px;
+                display: flex;
+                border-bottom: 1px solid lightgrey;
+                align-items: center;
+                padding: 5px;
+            }
+            .section-image{
+                margin-right: 5px;
+                border: none;
+                border-radius: 5px;
+                overflow: hidden;
+            }
+            .section-image img{
+                height:100%;
+                width:auto;
+            }
+
+            .section-details{
+                display: inline-block;
+            }
+
+            aside h2{
+                border-top: 1px solid lightgrey;
+                margin: 0;
+                padding-left: 5px;
+                font-weight: bold;
+                font-size: 1.1em;
+            }
+        </style>
+        <script>
+            $(document).ready(function () {
+                if (user != "") {
+                    //console.log(user);
+                    $("#greeting").html("Bem vindo, " + user.name);
+
+                    $("#btn-logout").click(function () {
+                        logout();
                     });
-                    for (var i = 0; i < postsToShow.length; i++) {
-                        $(postsSection).append(generatePostHTML(postsToShow[i]));
-                    }
-
                 }
-            }
-            $(".upvote").click(function (e) {
-                var postID = $(e.currentTarget).attr("post-id");
-                vote(user, postID, true);
-            });
-            $(".downvote").click(function (e) {
-                var postID = $(e.currentTarget).attr("post-id");
-                vote(user, postID, false);
-            });
-        });
-    </script>
-</head>
 
-<body>
-    <header>
-        <div>
-            <button class="btn-round" id="nav-toggler" type="button" title="Abrir menu">
-                <i class="fas fa-lg fa-bars"></i>
-            </button>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 416.28 304.91" class="visible" id="hue-logo">
-                <path d="M407.9,191.33a62.72,62.72,0,0,0-23.54-25.41q-15.17-9.18-34.85-9.17-20.22,0-36,9.44a65.53,65.53,0,0,0-24.74,26.33,75.4,75.4,0,0,0-7.49,22,10,10,0,0,1-3.39-8.07c0-.13,0-.27,0-.4s0-.4,0-.6v-122a9.65,9.65,0,0,0-2.92-7.32,10.37,10.37,0,0,0-7.45-2.79,9.59,9.59,0,0,0-10.11,10.11v78.73A34.3,34.3,0,0,1,251.26,182a41.55,41.55,0,0,1-16.63,14A53.65,53.65,0,0,1,211.09,201q-21.28,0-34.45-12.37T163.47,152.6v-2.54c0-.2,0-.39,0-.59v-8.16c0-.68,0-1.36,0-2v-.83a11,11,0,0,0-.06-1.16q-.74-18.72-8.42-32.55a57.3,57.3,0,0,0-23.54-23.28q-15-8-33.92-8A65.64,65.64,0,0,0,70.4,79.07,61.94,61.94,0,0,0,49.12,94.5v-45h0q0-20.16-10.4-34.5T12.28,0A12.37,12.37,0,0,0,3.62,3.31,10.82,10.82,0,0,0,0,11.65a12.18,12.18,0,0,0,3.15,8.51,13.2,13.2,0,0,0,9.13,4.1c5,0,8.24,1.73,11.5,6.45S28.58,41.46,28.64,49V210.47a9.65,9.65,0,0,0,2.92,7.32A10.35,10.35,0,0,0,39,220.58a9.58,9.58,0,0,0,10.11-10.11V131.74a34.23,34.23,0,0,1,6.12-19.82A41.42,41.42,0,0,1,71.86,98a53.75,53.75,0,0,1,23.54-5q21.28,0,34.45,12.37,12.77,12,13.14,34.64V152.6q0,21.28,8.51,36.58a57.21,57.21,0,0,0,23.55,23.28q15,8,33.91,8a65.79,65.79,0,0,0,27.13-5.58,62,62,0,0,0,21.28-15.43v6.05c0,.17,0,.34,0,.51s0,.32,0,.49Q257.91,220,270,228.81a44.16,44.16,0,0,0,9.87,5.39,76,76,0,0,0,9.38,34.93,67.34,67.34,0,0,0,26.2,26.33q16.76,9.45,38,9.45A76.41,76.41,0,0,0,379.57,300q13.56-4.92,22.34-12.37a8.07,8.07,0,0,0,2.93-6.12,9.61,9.61,0,0,0-3.46-7.18,9.9,9.9,0,0,0-5.85-2.13,11.63,11.63,0,0,0-7.18,2.66,46.94,46.94,0,0,1-15.56,8.38,59.22,59.22,0,0,1-19.29,3.32q-22.35,0-37.24-13.56t-17-35.38H406.7a9.64,9.64,0,0,0,6.92-2.53,8.91,8.91,0,0,0,2.66-6.78Q416.28,207.56,407.9,191.33ZM300.44,220.58a3.43,3.43,0,0,0-.64-.21q3-20.33,16.19-32.77t33.52-12.5q20,0,32.72,12.5t14.89,33Z"
-                />
-            </svg>
-            <form id="search" action="#" method="GET">
+                var postsSection = $("#posts-section");
+                // console.log(user);
+                if (user == "") {
+                    for (var i = 0; i < posts.length; i++) {
+                        $(postsSection).append(generatePostHTML(posts[i]));
+                    }
+                    $("#subscribed-sections").empty();
+                } else {
+                    refreshSubscribings();
+                    //console.log('aha');
+                    var subscribedSections = subscribings.filter(x => x.user == user.email); // Obrigado Daniel por explicar essa bagaça
+                    var postsToShow = [];
+                    for (var i = 0; i < subscribedSections.length; i++) {
+                        // console.log(subscribedSections[i].section);
+                        postsToShow = postsToShow.concat(posts.filter(x => x.section == subscribedSections[i].section));
+                    }
+                    if (postsToShow.length < 1) {
+                        $(postsSection).html("<p class=\"warning-heading-icon\"><i class=\"fas fa-exclamation-triangle\" style=\"font-size:3em; color: grey;\"></i></p><p class=\"warning-heading\">OPS!</p><p class=\"warning-body\">Você ainda não se inscreveu em nenhuma seção.</p><p>Navegue pelas seções existentes <a href=\"./busca.html?q=\">aqui.</a></p>")
+                    } else {
 
-                <input class="text-round" id="search-field">
+                        // Arranja os posts por pontuação
+                        postsToShow.sort(function (a, b) {
+                            var scoreA = getScore(a);
+                            var scoreB = getScore(b);
 
-                <button class="btn-round" id="btn-search" type="button" title="Pesquisar">
-                    <i class="fas fa-lg fa-search"></i>
+                            if (scoreA > scoreB) {
+                                return -1;
+                            } else if (scoreA < scoreB) {
+                                return 1;
+                            } else {
+                                return 0;
+                            }
+                        });
+                        for (var i = 0; i < postsToShow.length; i++) {
+                            $(postsSection).append(generatePostHTML(postsToShow[i]));
+                        }
+
+                    }
+                    
+                    var sectionCardModel = `<a class="discrete" href="%section-link%">
+                        <div class="section-card">
+                            <div class="section-image">
+                                <img src="%section-image%">
+                            </div>
+                            <div class="section-details">
+                                <h3 class="section-name">%section-name%</h3>
+                            </div>
+                        </div>
+                    </a>`;
+                    if(subscribedSections.length > 0){
+                        for(var i = 0; i < subscribedSections.length; i++){
+                            var section = sections.find(x => x.id == subscribedSections[i].section);
+                            console.log(section);
+                            $("#subscribed-sections").append(sectionCardModel.replace("%section-image%", section.img).replace(/%section-link%/g, rootUrl + "secao.html?h=" + encodeURI(section.id)).replace("%section-name%", section.name))
+                        }
+                    } else{
+                        $("#subscribed-sections").empty();
+                    }
+                    
+                }
+                $(".upvote").click(function (e) {
+                    var postID = $(e.currentTarget).attr("post-id");
+                    vote(user, postID, true);
+                });
+                $(".downvote").click(function (e) {
+                    var postID = $(e.currentTarget).attr("post-id");
+                    vote(user, postID, false);
+                });
+
+                   });
+        </script>
+    </head>
+
+    <body>
+        <header>
+            <div>
+                <button class="btn-round" id="nav-toggler" type="button" title="Abrir menu">
+                    <i class="fas fa-lg fa-bars"></i>
                 </button>
-            </form>
-        </div>
-        <nav>
-            <ul class="simple">
-                <li>
-                    <a class="btn-round" href="login.html">Login</a>
-                </li>
-                <li>
-                    <a class="btn-round" href="cadastro.html">Cadastro</a>
-                </li>
-            </ul>
-            <button id="btn-collapse-menu">
-                <i class="fas fa-angle-up"></i>
-            </button>
-        </nav>
-    </header>
-    <section id="main-section">
-        <h1>Home</h1>
-        <aside>
-            <span id="greeting">Bem vindo, visitante!</span>
-            <div id="details">
-                <span>Você está vendo os
-                    <mark>
-                        <i class="fas fa-star"></i> TOP POSTS</mark>
-                </span>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 416.28 304.91" class="visible" id="hue-logo">
+                    <path d="M407.9,191.33a62.72,62.72,0,0,0-23.54-25.41q-15.17-9.18-34.85-9.17-20.22,0-36,9.44a65.53,65.53,0,0,0-24.74,26.33,75.4,75.4,0,0,0-7.49,22,10,10,0,0,1-3.39-8.07c0-.13,0-.27,0-.4s0-.4,0-.6v-122a9.65,9.65,0,0,0-2.92-7.32,10.37,10.37,0,0,0-7.45-2.79,9.59,9.59,0,0,0-10.11,10.11v78.73A34.3,34.3,0,0,1,251.26,182a41.55,41.55,0,0,1-16.63,14A53.65,53.65,0,0,1,211.09,201q-21.28,0-34.45-12.37T163.47,152.6v-2.54c0-.2,0-.39,0-.59v-8.16c0-.68,0-1.36,0-2v-.83a11,11,0,0,0-.06-1.16q-.74-18.72-8.42-32.55a57.3,57.3,0,0,0-23.54-23.28q-15-8-33.92-8A65.64,65.64,0,0,0,70.4,79.07,61.94,61.94,0,0,0,49.12,94.5v-45h0q0-20.16-10.4-34.5T12.28,0A12.37,12.37,0,0,0,3.62,3.31,10.82,10.82,0,0,0,0,11.65a12.18,12.18,0,0,0,3.15,8.51,13.2,13.2,0,0,0,9.13,4.1c5,0,8.24,1.73,11.5,6.45S28.58,41.46,28.64,49V210.47a9.65,9.65,0,0,0,2.92,7.32A10.35,10.35,0,0,0,39,220.58a9.58,9.58,0,0,0,10.11-10.11V131.74a34.23,34.23,0,0,1,6.12-19.82A41.42,41.42,0,0,1,71.86,98a53.75,53.75,0,0,1,23.54-5q21.28,0,34.45,12.37,12.77,12,13.14,34.64V152.6q0,21.28,8.51,36.58a57.21,57.21,0,0,0,23.55,23.28q15,8,33.91,8a65.79,65.79,0,0,0,27.13-5.58,62,62,0,0,0,21.28-15.43v6.05c0,.17,0,.34,0,.51s0,.32,0,.49Q257.91,220,270,228.81a44.16,44.16,0,0,0,9.87,5.39,76,76,0,0,0,9.38,34.93,67.34,67.34,0,0,0,26.2,26.33q16.76,9.45,38,9.45A76.41,76.41,0,0,0,379.57,300q13.56-4.92,22.34-12.37a8.07,8.07,0,0,0,2.93-6.12,9.61,9.61,0,0,0-3.46-7.18,9.9,9.9,0,0,0-5.85-2.13,11.63,11.63,0,0,0-7.18,2.66,46.94,46.94,0,0,1-15.56,8.38,59.22,59.22,0,0,1-19.29,3.32q-22.35,0-37.24-13.56t-17-35.38H406.7a9.64,9.64,0,0,0,6.92-2.53,8.91,8.91,0,0,0,2.66-6.78Q416.28,207.56,407.9,191.33ZM300.44,220.58a3.43,3.43,0,0,0-.64-.21q3-20.33,16.19-32.77t33.52-12.5q20,0,32.72,12.5t14.89,33Z"
+                          />
+                </svg>
+                <form id="search" action="#" method="GET">
+
+                    <input class="text-round" id="search-field">
+
+                    <button class="btn-round" id="btn-search" type="button" title="Pesquisar">
+                        <i class="fas fa-lg fa-search"></i>
+                    </button>
+                </form>
             </div>
-        </aside>
-        <div id="posts-section">
+            <nav>
+                <ul class="simple">
+                    <li>
+                        <a class="btn-round" href="login.html">Login</a>
+                    </li>
+                    <li>
+                        <a class="btn-round" href="cadastro.html">Cadastro</a>
+                    </li>
+                </ul>
+                <button id="btn-collapse-menu">
+                    <i class="fas fa-angle-up"></i>
+                </button>
+            </nav>
+        </header>
+        <section id="main-section">
+            <h1>Home</h1>
+            <aside>
+                <span id="greeting">Bem vindo, visitante!</span>
+                <div id="details">
+                    <span>Você está vendo os
+                        <mark>
+                            <i class="fas fa-star"></i> TOP POSTS</mark>
+                    </span>
+                </div>
+                <div id="subscribed-sections">
+                    <h2>Suas seções: </h2>
+                </div>
+            </aside>
+            <div id="posts-section">
 
 
-        </div>
-    </section>
-</body>
+            </div>
+        </section>
+    </body>
 
 </html>
